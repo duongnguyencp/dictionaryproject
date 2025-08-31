@@ -20,9 +20,14 @@ input {
   width: 736px;
   border-radius: 16px;
   padding: 0px calc(24.5px + 15.55px * 1.5) 0px 24px;
+
+  &:focus,
+  &:active {
+    outline: 1px solid variables.$color-purple;
+  }
 }
 input::placeholder {
-  color: rgba($variables.$color-black03, 0.25);
+  color: rgba(variables.$color-black03, 0.25);
 }
 .input-wrapper {
   display: inline;
