@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import searchBox from './components/search-boxs/search-btn.vue'
+import playBtn from './components/buttons/play-btn.vue'
 </script>
 
 <template>
-  <searchBox></searchBox>
+  <playBtn />
 </template>
 
 <style scoped></style>

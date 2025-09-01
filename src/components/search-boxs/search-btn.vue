@@ -1,13 +1,20 @@
 <template>
   <div class="input-wrapper">
-    <input :placeholder="placeholder" />
+    <input :placeholder="placeholder" @keyup.enter="handlerEnter" :class="{ error: isError }" />
     <span class="icon-search" />
+    <p v-if="isError" class="error-message">Whoops, can't be empty...</p>
   </div>
 </template>
 <script setup>
 const placeholder = 'Search for any word...'
+import { ref } from 'vue'
+const inputValue = ref('')
+const isError = ref(false)
+const handlerEnter = () => {
+  isError.value = inputValue.value.trim() === ''
+}
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
 input {
   background-color: variables.$color-grey03;
   height: 64px;
@@ -25,6 +32,14 @@ input {
   &:active {
     outline: 1px solid variables.$color-purple;
   }
+  &.error {
+    outline: 1px solid variables.$color-red01;
+  }
+}
+.error-message {
+  color: variables.$color-red01;
+  font-size: variables.$font-size-heading-s;
+  margin-top: 8px;
 }
 input::placeholder {
   color: rgba(variables.$color-black03, 0.25);
