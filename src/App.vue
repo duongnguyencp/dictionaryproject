@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import playBtn from './components/buttons/play-btn.vue'
+import toggle from './components/radios/toggle-them.vue'
 </script>
 
 <template>
-  <playBtn />
+  <toggle />
 </template>
 
 <style scoped></style>
