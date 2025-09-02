@@ -1,3 +1,42 @@
+@font-face {
+  font-family: Inter;
+  src: url('../fonts/inter/static/Inter-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: Inter;
+  src: url('../fonts/inter/static/Inter-Bold.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+}
+@font-face {
+  font-family: Lora;
+  src: url('../fonts/inter/static/Lora-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: Lora;
+  src: url('../fonts/inter/static/Lora-Bold.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+}
+@font-face {
+  font-family: Incosolata;
+  src: url('../fonts/inter/static/Incosolata-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: Incosolata;
+  src: url('../fonts/inter/static/Incosolata-Bold.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+}
 $color-black01: #050505;
 $color-black02: #1f1f1f;
 $color-black03: #2d2d2d;
@@ -9,9 +48,9 @@ $color-white: #ffffff;
 $color-purple: #a445ed;
 $color-red01: #ff5252;
 
-$font-family-01: 'Inter', sans-serif;
-$font-family-02: 'Inter', serif;
-$font-family-03: 'Incosolata', monospace;
+$font-family-01: Inter, sans-serif;
+$font-family-02: Lora, serif;
+$font-family-03: Incosolata, monospace;
 
 $font-size-heading-l: 64px;
 $line-height-heading-l: 77px;

@@ -1,9 +1,15 @@
 <script setup lang="ts">
-import toggle from './components/radios/toggle-them.vue'
+import logoVue from './components/logo/logo.vue'
+import selectFont from './components/select-font/select-font.vue'
+import toggleTheme from './components/radios/toggle-them.vue'
 </script>
 
 <template>
-  <toggle />
+  <div class="header-wrapper">
+    <div class="header-left">
+      <selectFont />
+    </div>
+  </div>
 </template>
 
 <style scoped></style>
