@@ -2,6 +2,7 @@
 import logoVue from './components/logo/logo.vue'
 import selectFont from './components/select-font/select-font.vue'
 import toggleTheme from './components/radios/toggle-them.vue'
+import searchBtn from './components/search-boxs/search-btn.vue'
 </script>
 
 <template>
@@ -13,6 +14,9 @@ import toggleTheme from './components/radios/toggle-them.vue'
         <div class="seperator"></div>
         <toggleTheme class="toggleTheme" />
       </div>
+    </div>
+    <div>
+      <searchBtn width="736" height="64"></searchBtn>
     </div>
   </div>
 </template>
