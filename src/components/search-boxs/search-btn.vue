@@ -18,27 +18,21 @@ const isError = ref(false)
 const handlerEnter = () => {
   isError.value = inputValue.value.trim() === ''
 }
-const props = defineProps({
-  width: {
-    type: Number,
-    default: 0,
-  },
-  height: {
-    type: Number,
-    default: 0,
-  },
-})
+defineProps<{
+  width: string
+  height: string
+}>()
 </script>
 <style lang="scss" scoped>
 input {
-  background-color: variables.$color-grey03;
+  background-color: var(--bg-input);
   height: var(--height);
   box-sizing: border-box;
   font-size: 20px;
   font-weight: bold;
-  color: variables.$color-black03;
   letter-spacing: 0px;
   overflow: hidden;
+  caret-color: variables.$color-purple;
   border: none;
   width: var(--width);
   border-radius: 16px;
@@ -58,7 +52,7 @@ input {
   margin-top: 8px;
 }
 input::placeholder {
-  color: rgba(variables.$color-black03, 0.25);
+  color: rgba(var(--text-color), 0.25);
 }
 .input-wrapper {
   display: inline;

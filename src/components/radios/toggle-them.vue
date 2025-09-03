@@ -83,6 +83,9 @@ input:checked + span {
 }
 </style>
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, watchEffect } from 'vue'
 const checked = ref(false)
+watchEffect(() => {
+  document.body.setAttribute('data-theme', checked.value === true ? 'dark' : 'light')
+})
 </script>

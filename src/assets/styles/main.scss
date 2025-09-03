@@ -1,7 +1,30 @@
+:root {
+  --bg-color: #{variables.$color-white};
+  --text-color: #{variables.$color-black03};
+  --font-family: #{variables.$font-family-01};
+  --shadow-color: #{rgba(black, 0.1)};
+  --bg-input: #{variables.$color-grey03};
+  --bg-dropdown: #{variables.$color-white};
+}
+[data-theme='light'] {
+  --bg-color: #{variables.$color-white};
+  --text-color: #{variables.$color-black03};
+  --shadow-color: #{rgba(black, 0.1)};
+  --bg-input: #{variables.$color-grey03};
+  --bg-dropdown: #{variables.$color-white};
+}
+
+[data-theme='dark'] {
+  --bg-color: #{variables.$color-black01};
+  --text-color: #{variables.$color-white};
+  --shadow-color: #{rgba(black, 0.1)};
+  --bg-input: #{variables.$color-black02};
+  --bg-dropdown: #{variables.$color-black02};
+}
+
 body {
-  font-family: variables.$font-family-01;
-  font-weight: normal;
-  font-size: variables.$font-size-body-m;
   margin: 0;
   padding: 0;
+  background-color: var(--bg-color);
+  color: var(--text-color);
 }

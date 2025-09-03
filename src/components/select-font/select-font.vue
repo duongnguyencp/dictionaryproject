@@ -1,7 +1,7 @@
 <template>
   <div class="dropdown-wrapper">
     <div class="dropdown-view" @click="handleClick">
-      <span class="selected-text">{{ selectedText }}</span>
+      <span :class="fontStyle">{{ selectedText }}</span>
       <svg
         class="ic-dropdown"
         xmlns="http://www.w3.org/2000/svg"
@@ -13,9 +13,11 @@
       </svg>
     </div>
     <div class="dropdown-content" :class="{ show: isShow }">
-      <a @click="selectItem('Sans Serif')" class="sans-serif-style">Sans Serif</a>
-      <a @click="selectItem('Serif')" class="serif-style">Serif</a>
-      <a @click="selectItem('Mono')" class="mono-style">Mono</a>
+      <a @click="selectItem('Sans Serif', 'sans-serif-style')" class="sans-serif-style"
+        >Sans Serif</a
+      >
+      <a @click="selectItem('Serif', 'serif-style')" class="serif-style">Serif</a>
+      <a @click="selectItem('Mono', 'mono-style')" class="mono-style">Mono</a>
     </div>
   </div>
 </template>
@@ -27,7 +29,6 @@
 }
 .selected-text {
   font-weight: bold;
-  color: variables.$color-black03;
   font-size: variables.$font-size-body-m;
   line-height: variables.$line-height-body-m;
 }
@@ -47,13 +48,13 @@
   top: calc(105px - 63px);
   border-radius: 16px;
   right: 0px;
+  background-color: var(--bg-dropdown);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
 }
 .dropdown-content a {
   text-decoration: none;
   display: block;
   margin-left: calc(796px - 772px);
-  color: variables.$color-black02;
   &:hover {
     color: variables.$color-purple;
   }
@@ -97,10 +98,12 @@
 import { ref } from 'vue'
 const isShow = ref(false)
 const selectedText = ref('Sans Serif')
+const fontStyle = ref('sans-serif-style')
 const handleClick = () => {
   isShow.value = !isShow.value
 }
-const selectItem = (value: string) => {
+const selectItem = (value: string, style: string) => {
   selectedText.value = value
+  fontStyle.value = style
 }
 </script>
