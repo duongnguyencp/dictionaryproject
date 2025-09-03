@@ -1,39 +1,39 @@
 @font-face {
   font-family: Inter;
-  src: url('../fonts/inter/static/Inter-Regular.ttf') format('truetype');
+  src: url('@/assets/fonts/inter/static/Inter-Regular.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
   font-family: Inter;
-  src: url('../fonts/inter/static/Inter-Bold.ttf') format('truetype');
+  src: url('@/assets/fonts/inter/static/Inter-Bold.ttf') format('truetype');
   font-weight: bold;
   font-style: normal;
 }
 @font-face {
   font-family: Lora;
-  src: url('../fonts/inter/static/Lora-Regular.ttf') format('truetype');
+  src: url('@/assets/fonts/inter/static/Lora-Regular.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
   font-family: Lora;
-  src: url('../fonts/inter/static/Lora-Bold.ttf') format('truetype');
+  src: url('@/assets/fonts/inter/static/Lora-Bold.ttf') format('truetype');
   font-weight: bold;
   font-style: normal;
 }
 @font-face {
   font-family: Incosolata;
-  src: url('../fonts/inter/static/Incosolata-Regular.ttf') format('truetype');
+  src: url('@/assets/fonts/inter/static/Incosolata-Regular.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
   font-family: Incosolata;
-  src: url('../fonts/inter/static/Incosolata-Bold.ttf') format('truetype');
+  src: url('@/assets/fonts/inter/static/Incosolata-Bold.ttf') format('truetype');
   font-weight: bold;
   font-style: normal;
 }

@@ -52,7 +52,7 @@ input {
   margin-top: 8px;
 }
 input::placeholder {
-  color: rgba(var(--text-color), 0.25);
+  color: rgba(#{var(--text-color)}, 0.25);
 }
 .input-wrapper {
   display: inline;
