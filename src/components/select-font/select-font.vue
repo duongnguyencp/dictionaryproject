@@ -13,9 +13,9 @@
       </svg>
     </div>
     <div class="dropdown-content" :class="{ show: isShow }">
-      <a class="sans-serif-style">Sans Serif</a>
-      <a class="serif-style">Serif</a>
-      <a class="mono-style">Mono</a>
+      <a @click="selectItem('Sans Serif')" class="sans-serif-style">Sans Serif</a>
+      <a @click="selectItem('Serif')" class="serif-style">Serif</a>
+      <a @click="selectItem('Mono')" class="mono-style">Mono</a>
     </div>
   </div>
 </template>
@@ -96,8 +96,11 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 const isShow = ref(false)
-const selectedText = 'Sans Serif'
+const selectedText = ref('Sans Serif')
 const handleClick = () => {
   isShow.value = !isShow.value
+}
+const selectItem = (value: string) => {
+  selectedText.value = value
 }
 </script>
