@@ -27,8 +27,16 @@
 .icon-wrapper {
   position: relative;
   height: 20px;
-  width: 80px;
   display: inline-block;
+  @include variables.respond-to(desktop) {
+    width: 80px;
+  }
+  @include variables.respond-to(tablet) {
+    width: 80px;
+  }
+  @include variables.respond-to(mobile) {
+    width: 72px;
+  }
 }
 .check {
   stroke: variables.$color-purple;
@@ -39,7 +47,7 @@
 .ic-moon-wrapper {
   position: absolute;
   top: 0px;
-  left: calc(1012px - 952px);
+  right: 0px;
 }
 .switch {
   width: 40px;

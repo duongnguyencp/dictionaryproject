@@ -62,3 +62,25 @@ $font-size-body-m: 18px;
 $line-height-body-m: 24px;
 $font-size-body-s: 14px;
 $line-height-body-s: 17px;
+
+$breakpoint-mobile: 375px;
+$breakpoint-tablet: 768px;
+@mixin respond-to($device) {
+  @if $device == mobile {
+    & {
+      @media (max-width: #{$breakpoint-mobile}) {
+        @content;
+      }
+    }
+  } @else if $device == tablet {
+    & {
+      @media (max-width: #{$breakpoint-tablet}) {
+        @content;
+      }
+    }
+  } @else {
+    & {
+      @content;
+    }
+  }
+}

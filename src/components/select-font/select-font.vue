@@ -26,18 +26,35 @@
   position: relative;
   cursor: pointer;
   display: inline-block;
+  @include variables.respond-to(desktop) {
+    font-size: variables.$font-size-body-m;
+  }
+  @include variables.respond-to(tablet) {
+    font-size: variables.$font-size-body-m;
+  }
+  @include variables.respond-to(mobile) {
+    font-size: variables.$font-size-body-s;
+  }
 }
+
 .selected-text {
   font-weight: bold;
-  font-size: variables.$font-size-body-m;
   line-height: variables.$line-height-body-m;
 }
 .dropdown-view {
   display: inline-block;
-  width: 120px;
   height: 24px;
   float: right;
   position: relative;
+  @include variables.respond-to(desktop) {
+    width: 120px;
+  }
+  @include variables.respond-to(tablet) {
+    width: 120px;
+  }
+  @include variables.respond-to(mobile) {
+    width: 98px;
+  }
 }
 .dropdown-content {
   width: 183px;
@@ -68,19 +85,16 @@
 }
 .sans-serif-style {
   font-family: variables.$font-family-01;
-  font-size: variables.$font-size-body-m;
   font-weight: bold;
   line-height: variables.$line-height-body-m;
 }
 .serif-style {
   font-family: variables.$font-family-02;
-  font-size: variables.$font-size-body-m;
   font-weight: bold;
   line-height: variables.$line-height-body-m;
 }
 .mono-style {
   font-family: variables.$font-family-03;
-  font-size: variables.$font-size-body-m;
   font-weight: bold;
   line-height: variables.$line-height-body-m;
 }

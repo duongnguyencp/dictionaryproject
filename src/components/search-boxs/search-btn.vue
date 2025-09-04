@@ -1,11 +1,6 @@
 <template>
   <div class="input-wrapper">
-    <input
-      :placeholder="placeholder"
-      @keyup.enter="handlerEnter"
-      :class="{ error: isError }"
-      :style="{ '--width': width + 'px', '--height': height + 'px' }"
-    />
+    <input :placeholder="placeholder" @keyup.enter="handlerEnter" :class="{ error: isError }" />
     <span class="icon-search" />
   </div>
   <p v-if="isError" class="error-message">Whoops, can't be empty...</p>
@@ -18,25 +13,19 @@ const isError = ref(false)
 const handlerEnter = () => {
   isError.value = inputValue.value.trim() === ''
 }
-defineProps<{
-  width: string
-  height: string
-}>()
 </script>
 <style lang="scss" scoped>
 input {
   background-color: var(--bg-input);
-  height: var(--height);
   color: var(--text-color);
   box-sizing: border-box;
   font-family: var(--font-family);
-  font-size: 20px;
   font-weight: bold;
   letter-spacing: 0px;
   overflow: hidden;
   caret-color: variables.$color-purple;
   border: none;
-  width: var(--width);
+  width: 100%;
   border-radius: 16px;
   padding: 0px calc(24.5px + 15.55px * 1.5) 0px 24px;
 
@@ -47,11 +36,31 @@ input {
   &.error {
     outline: 1px solid variables.$color-red01;
   }
+  @include variables.respond-to(desktop) {
+    height: 64px;
+    font-size: variables.$font-size-heading-s;
+  }
+  @include variables.respond-to(tablet) {
+    height: 64px;
+    font-size: variables.$font-size-heading-s;
+  }
+  @include variables.respond-to(mobile) {
+    height: 48px;
+    font-size: 16px;
+  }
 }
 .error-message {
   color: variables.$color-red01;
-  font-size: variables.$font-size-heading-s;
   margin-top: 8px;
+  @include variables.respond-to(desktop) {
+    font-size: variables.$font-size-heading-s;
+  }
+  @include variables.respond-to(tablet) {
+    font-size: variables.$font-size-heading-s;
+  }
+  @include variables.respond-to(mobile) {
+    font-size: 16px;
+  }
 }
 input::placeholder {
   color: var(--placehold-input);
@@ -63,7 +72,7 @@ input::placeholder {
 .icon-search {
   position: absolute;
   right: 24.5px;
-  width: calc(15.55px * 1.5);
+  width: 15.5px;
   top: 50%;
   aspect-ratio: 1/1;
   transform: translateY(-50%);

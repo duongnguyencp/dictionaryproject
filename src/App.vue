@@ -9,7 +9,7 @@ import playBtn from './components/buttons/play-btn.vue'
 <template>
   <div class="dictionary-app">
     <div class="header-wrapper">
-      <logoVue />
+      <logoVue class="logo" />
       <div class="header-left">
         <selectFont />
         <div class="seperator"></div>
@@ -17,7 +17,7 @@ import playBtn from './components/buttons/play-btn.vue'
       </div>
     </div>
     <div class="search-wrapper">
-      <searchBtn width="736" height="64"></searchBtn>
+      <searchBtn></searchBtn>
     </div>
     <div class="word-result-wrapper">
       <span class="word-result">keyboard</span>
@@ -95,6 +95,12 @@ import playBtn from './components/buttons/play-btn.vue'
   text-decoration-thickness: 1px;
   text-decoration-color: variables.$color-grey01;
   text-decoration: underline;
+  @include variables.respond-to(tablet) {
+    font-size: variables.$font-size-body-m;
+  }
+  @include variables.respond-to(mobile) {
+    font-size: 15px;
+  }
 }
 
 .reference-wrapper {
@@ -110,7 +116,14 @@ import playBtn from './components/buttons/play-btn.vue'
 
 .example {
   font-size: variables.$font-size-body-m;
+
   color: variables.$color-grey01;
+  @include variables.respond-to(tablet) {
+    font-size: variables.$font-size-body-m;
+  }
+  @include variables.respond-to(mobile) {
+    font-size: 15px;
+  }
 }
 
 .synonyms-wrapper {
@@ -127,6 +140,12 @@ import playBtn from './components/buttons/play-btn.vue'
     text-decoration: underline;
     text-decoration-thinkness: 1px;
   }
+  @include variables.respond-to(tablet) {
+    font-size: variables.$font-size-heading-s;
+  }
+  @include variables.respond-to(mobile) {
+    font-size: 16px;
+  }
 }
 .mean-type-wrapper {
   margin-top: 40px;
@@ -135,9 +154,19 @@ import playBtn from './components/buttons/play-btn.vue'
 .mean-list {
   font-size: variables.$font-size-body-m;
   margin-left: 22px;
-  margin-top: 25px;
+  margin-top: 27px;
   padding-left: 25px;
   list-style: none;
+  @include variables.respond-to(tablet) {
+    margin-top: 27px;
+    font-size: variables.$font-size-body-m;
+    margin-left: 22px;
+  }
+  @include variables.respond-to(mobile) {
+    margin-top: 17px;
+    font-size: 15px;
+    margin-left: 0px;
+  }
 }
 
 .mean-list div {
@@ -148,7 +177,7 @@ import playBtn from './components/buttons/play-btn.vue'
   content: '';
   position: absolute;
   left: -25px;
-  top: 50%;
+  top: 10px;
   transform: translateY(-50%);
   width: 5px;
   height: 5px;
@@ -157,18 +186,30 @@ import playBtn from './components/buttons/play-btn.vue'
 }
 
 .mean-list > :nth-last-child(n + 2) {
-  margin-bottom: calc(171px - 158px);
+  margin-bottom: 13px;
 }
 
 .bullet-word-type {
   font-size: variables.$font-size-heading-s;
   color: variables.$color-grey01;
+  @include variables.respond-to(tablet) {
+    font-size: variables.$font-size-heading-s;
+  }
+  @include variables.respond-to(mobile) {
+    font-size: 16px;
+  }
 }
 
 .word-type-wrapper {
   display: flex;
   align-items: center;
-  margin-top: calc(409px - 369px);
+  margin-top: 42px;
+  @include variables.respond-to(tablet) {
+    margin-top: 42px;
+  }
+  @include variables.respond-to(mobile) {
+    margin-top: 32px;
+  }
 }
 
 .word-type-wrapper .seperator-horizontal {
@@ -184,6 +225,12 @@ import playBtn from './components/buttons/play-btn.vue'
   font-size: variables.$font-size-heading-m;
   font-weight: var(--word-type-weight);
   font-style: var(--word-type-style);
+  @include variables.respond-to(tablet) {
+    font-size: variables.$font-size-heading-m;
+  }
+  @include variables.respond-to(mobile) {
+    font-size: 18px;
+  }
 }
 .play-btn {
   position: absolute;
@@ -195,40 +242,78 @@ import playBtn from './components/buttons/play-btn.vue'
   margin-top: 45px;
   position: relative;
   display: block;
+  @include variables.respond-to(tablet) {
+    margin-top: 45px;
+  }
+  @include variables.respond-to(mobile) {
+    margin-top: 24px;
+  }
 }
 .word-sound {
   display: block;
-  margin-top: calc(85px - 77px);
   color: variables.$color-purple;
   font-family: variables.$font-family-01;
   font-size: variables.$font-size-heading-m;
+  @include variables.respond-to(tablet) {
+    margin-top: 11px;
+    font-size: variables.$font-size-heading-m;
+  }
+  @include variables.respond-to(mobile) {
+    margin-top: 8px;
+    font-size: variables.$font-size-body-m;
+  }
 }
 .word-result {
   display: block;
   font-size: variables.$font-size-heading-l;
   font-weight: bold;
+  @include variables.respond-to(tablet) {
+    font-size: variables.$font-size-heading-l;
+  }
+  @include variables.respond-to(mobile) {
+    font-size: 32px;
+  }
 }
+
 .dictionary-app {
   margin-left: auto;
-  width: 737px;
   margin-right: auto;
-  margin-top: 36.5px;
   margin-bottom: 167px;
+  @include variables.respond-to(desktop) {
+    width: 737px;
+    margin-top: 36.5px;
+  }
+  @include variables.respond-to(tablet) {
+    width: 689px;
+    margin-top: 36.5px;
+  }
+  @include variables.respond-to(mobile) {
+    width: 327px;
+    margin-top: 24px;
+  }
 }
+
 .header-wrapper {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-logoVue {
-}
+
 .header-left {
   display: flex;
   align-items: center;
 }
 .seperator,
 .toggleTheme {
-  margin-left: calc(1008px - 981px);
+  @include variables.respond-to(desktop) {
+    margin-left: 26px;
+  }
+  @include variables.respond-to(tablet) {
+    margin-left: 26px;
+  }
+  @include variables.respond-to(mobile) {
+    margin-left: 16px;
+  }
 }
 .seperator {
   width: 1px;
@@ -236,6 +321,11 @@ logoVue {
   background-color: var(--seperator-color);
 }
 .search-wrapper {
-  margin-top: calc(146px - 58px);
+  @include variables.respond-to(tablet) {
+    margin-top: 50px;
+  }
+  @include variables.respond-to(mobile) {
+    margin-top: 24px;
+  }
 }
 </style>
