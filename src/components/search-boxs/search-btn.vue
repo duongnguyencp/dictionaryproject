@@ -27,6 +27,7 @@ defineProps<{
 input {
   background-color: var(--bg-input);
   height: var(--height);
+  color: var(--text-color);
   box-sizing: border-box;
   font-size: 20px;
   font-weight: bold;
@@ -52,7 +53,7 @@ input {
   margin-top: 8px;
 }
 input::placeholder {
-  color: rgba(#{var(--text-color)}, 0.25);
+  color: var(--placehold-input);
 }
 .input-wrapper {
   display: inline;

@@ -49,7 +49,7 @@
   border-radius: 16px;
   right: 0px;
   background-color: var(--bg-dropdown);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--shadow-popup);
 }
 .dropdown-content a {
   text-decoration: none;
@@ -63,7 +63,7 @@
 .dropdown-content a:nth-child(1) {
   margin-top: 24px;
 }
-.dropdown-content a:nth-child(n-1) {
+.dropdown-content a:nth-child(n + 2) {
   margin-top: 16px;
 }
 .sans-serif-style {

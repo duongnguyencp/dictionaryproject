@@ -12,6 +12,8 @@
   --shadow-color: #{rgba(black, 0.1)};
   --bg-input: #{variables.$color-grey03};
   --bg-dropdown: #{variables.$color-white};
+  --placehold-input: #{rgba(variables.$color-black03, 0.25)};
+  --shadow-popup: 0 5px 30px rgba(0, 0, 0, 0.1);
 }
 
 [data-theme='dark'] {
@@ -20,6 +22,8 @@
   --shadow-color: #{rgba(black, 0.1)};
   --bg-input: #{variables.$color-black02};
   --bg-dropdown: #{variables.$color-black02};
+  --placehold-input: #{rgba(variables.$color-white, 0.25)};
+  --shadow-popup: 0 5px 30px #{variables.$color-purple};
 }
 
 body {
