@@ -7,8 +7,8 @@
       :style="{ '--width': width + 'px', '--height': height + 'px' }"
     />
     <span class="icon-search" />
-    <p v-if="isError" class="error-message">Whoops, can't be empty...</p>
   </div>
+  <p v-if="isError" class="error-message">Whoops, can't be empty...</p>
 </template>
 <script setup lang="ts">
 const placeholder = 'Search for any word...'
