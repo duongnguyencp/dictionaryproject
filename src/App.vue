@@ -321,6 +321,7 @@ import playBtn from './components/buttons/play-btn.vue'
   background-color: var(--seperator-color);
 }
 .search-wrapper {
+  margin-top: 50px;
   @include variables.respond-to(tablet) {
     margin-top: 50px;
   }
