@@ -29,6 +29,7 @@ input {
   height: var(--height);
   color: var(--text-color);
   box-sizing: border-box;
+  font-family: var(--font-family);
   font-size: 20px;
   font-weight: bold;
   letter-spacing: 0px;

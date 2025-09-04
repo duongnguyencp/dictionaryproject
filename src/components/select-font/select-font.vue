@@ -95,13 +95,25 @@
 }
 </style>
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, watchEffect } from 'vue'
 const isShow = ref(false)
 const selectedText = ref('Sans Serif')
 const fontStyle = ref('sans-serif-style')
+
 const handleClick = () => {
   isShow.value = !isShow.value
 }
+watchEffect(() => {
+  document.body.setAttribute(
+    'data-font',
+    fontStyle.value === 'sans-serif-style'
+      ? 'sans-serif'
+      : fontStyle.value === 'serif-style'
+        ? 'serif'
+        : 'mono',
+  )
+})
+
 const selectItem = (value: string, style: string) => {
   selectedText.value = value
   fontStyle.value = style
