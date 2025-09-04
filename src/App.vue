@@ -87,10 +87,14 @@ import playBtn from './components/buttons/play-btn.vue'
 }
 .reference-link {
   margin-left: 21px;
+  text-decoration: underline;
 }
 
 .source-link {
   color: variables.$color-grey01;
+  text-decoration-thickness: 1px;
+  text-decoration-color: variables.$color-grey01;
+  text-decoration: underline;
 }
 
 .reference-wrapper {
@@ -98,7 +102,6 @@ import playBtn from './components/buttons/play-btn.vue'
   align-items: center;
   font-size: variables.$font-size-body-s;
   margin-top: 20px;
-  text-decoration: underline;
 }
 
 .end-page {
@@ -119,6 +122,11 @@ import playBtn from './components/buttons/play-btn.vue'
   font-size: variables.$font-size-heading-s;
   font-weight: bold;
   margin-left: 40px;
+  cursor: pointer;
+  &:hover {
+    text-decoration: underline;
+    text-decoration-thinkness: 1px;
+  }
 }
 .mean-type-wrapper {
   margin-top: 40px;
