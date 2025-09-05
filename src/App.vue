@@ -77,7 +77,7 @@ watch(
       </div>
       <div class="end-page seperator-horizontal"></div>
       <div class="reference-wrapper">
-        <span class="source-link">Source</span>
+        <div class="source-link">Source</div>
         <span class="reference-link">https://en.wiktionary.org/wiki/keyboard</span>
         <svg
           class="icon-link"
@@ -162,6 +162,12 @@ watch(
 .reference-link {
   margin-left: 21px;
   text-decoration: underline;
+  @include variables.respond-to(tablet) {
+    margin-left: 21px;
+  }
+  @include variables.respond-to(mobile) {
+    margin-left: 0px;
+  }
 }
 
 .source-link {
@@ -170,10 +176,12 @@ watch(
   text-decoration-color: variables.$color-grey01;
   text-decoration: underline;
   @include variables.respond-to(tablet) {
+    dislay: block;
     font-size: variables.$font-size-body-m;
   }
   @include variables.respond-to(mobile) {
     font-size: 15px;
+    dislay: block;
   }
 }
 
@@ -182,6 +190,12 @@ watch(
   align-items: center;
   font-size: variables.$font-size-body-s;
   margin-top: 20px;
+  @include variables.respond-to(tablet) {
+    display: flex;
+  }
+  @include variables.respond-to(mobile) {
+    display: block;
+  }
 }
 
 .end-page {

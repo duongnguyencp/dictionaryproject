@@ -13,5 +13,3 @@ jobs:
       - name: Call Vercel Deploy Hook
         run: |
           curl -X POST ${{ secrets.VERCEL_DEPLOY_HOOK}}
-          
-
