@@ -91,9 +91,20 @@ input:checked + span {
 }
 </style>
 <script setup lang="ts">
-import { ref, watchEffect } from 'vue'
+import { ref, watchEffect, onMounted } from 'vue'
 const checked = ref(false)
 watchEffect(() => {
   document.body.setAttribute('data-theme', checked.value === true ? 'dark' : 'light')
+})
+onMounted(() => {
+  // Init prefers-color-scheme
+  const mq = window.matchMedia('(prefers-color-scheme: dark)')
+  document.body.setAttribute('data-theme', mq.matches === true ? 'dark' : 'light')
+  checked.value = mq.matches
+  // Realtime prefers-color-scheme change
+  mq.addEventListener('change', (e) => {
+    document.body.setAttribute('data-theme', mq.matches === true ? 'dark' : 'light')
+    checked.value = mq.matches
+  })
 })
 </script>
