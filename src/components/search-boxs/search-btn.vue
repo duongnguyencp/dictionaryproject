@@ -1,18 +1,26 @@
 <template>
   <div class="input-wrapper">
-    <input :placeholder="placeholder" @keyup.enter="handlerEnter" :class="{ error: isError }" />
+    <input
+      v-model="inputValue"
+      :placeholder="placeholder"
+      @keyup.enter="handlerEnter"
+      :class="{ error: isError }"
+    />
     <span class="icon-search" />
   </div>
   <p v-if="isError" class="error-message">Whoops, can't be empty...</p>
 </template>
 <script setup lang="ts">
 const placeholder = 'Search for any word...'
-import { ref } from 'vue'
+import { ref, defineExpose } from 'vue'
 const inputValue = ref('')
 const isError = ref(false)
 const handlerEnter = () => {
   isError.value = inputValue.value.trim() === ''
 }
+defineExpose({
+  inputValue,
+})
 </script>
 <style lang="scss" scoped>
 input {

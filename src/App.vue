@@ -4,6 +4,23 @@ import selectFont from './components/select-font/select-font.vue'
 import toggleTheme from './components/radios/toggle-them.vue'
 import searchBtn from './components/search-boxs/search-btn.vue'
 import playBtn from './components/buttons/play-btn.vue'
+import { ref, watch } from 'vue'
+type SearchExpose = {
+  inputValue: string
+}
+const isNotFound = ref(false)
+const searchRef = ref<SearchExpose | null>(null)
+watch(
+  () => searchRef.value?.inputValue,
+
+  (newVal, oldVal) => {
+    if (newVal !== '') {
+      isNotFound.value = true
+    } else {
+      isNotFound.value = false
+    }
+  },
+)
 </script>
 
 <template>
@@ -17,71 +34,128 @@ import playBtn from './components/buttons/play-btn.vue'
       </div>
     </div>
     <div class="search-wrapper">
-      <searchBtn></searchBtn>
+      <searchBtn ref="searchRef"></searchBtn>
     </div>
-    <div class="word-result-wrapper">
-      <span class="word-result">keyboard</span>
-      <span class="word-sound">/ˈkiːbɔːd/</span>
-      <playBtn class="play-btn" />
-    </div>
-    <div class="word-type-wrapper">
-      <span class="type-word">noun</span>
-      <div class="seperator-horizontal"></div>
-    </div>
-    <div class="mean-type-wrapper">
-      <span class="bullet-word-type">Meaning</span>
-      <div class="mean-list">
-        <div>(etc.) A set of keys used to operate a typewriter, computer etc.</div>
-        <div>
-          A component of many instruments including the piano, organ, and harpsichord consisting of
-          usually black and white keys that cause different tones to be produced when struck.
-        </div>
-        <div>
-          A device with keys of a musical keyboard, used to control electronic sound-producing
-          devices which may be built into or separate from the keyboard device.
+    <div class="content-search" v-if="isNotFound === false">
+      <div class="word-result-wrapper">
+        <span class="word-result">keyboard</span>
+        <span class="word-sound">/ˈkiːbɔːd/</span>
+        <playBtn class="play-btn" />
+      </div>
+      <div class="word-type-wrapper">
+        <span class="type-word">noun</span>
+        <div class="seperator-horizontal"></div>
+      </div>
+      <div class="mean-type-wrapper">
+        <span class="bullet-word-type">Meaning</span>
+        <div class="mean-list">
+          <div>(etc.) A set of keys used to operate a typewriter, computer etc.</div>
+          <div>
+            A component of many instruments including the piano, organ, and harpsichord consisting
+            of usually black and white keys that cause different tones to be produced when struck.
+          </div>
+          <div>
+            A device with keys of a musical keyboard, used to control electronic sound-producing
+            devices which may be built into or separate from the keyboard device.
+          </div>
         </div>
       </div>
-    </div>
-    <div class="synonyms-wrapper">
-      <span class="bullet-word-type">Synonyms</span>
-      <span class="synonyms-list">electronic keyboard</span>
-    </div>
-    <div class="word-type-wrapper">
-      <span class="type-word">verb</span>
-      <div class="seperator-horizontal"></div>
-    </div>
-    <div class="mean-type-wrapper">
-      <span class="bullet-word-type">Meaning</span>
-      <div class="mean-list">
-        <div>To type on a computer keyboard.</div>
-        <span class="example">“Keyboarding is the part of this job I hate the most.”</span>
+      <div class="synonyms-wrapper">
+        <span class="bullet-word-type">Synonyms</span>
+        <span class="synonyms-list">electronic keyboard</span>
+      </div>
+      <div class="word-type-wrapper">
+        <span class="type-word">verb</span>
+        <div class="seperator-horizontal"></div>
+      </div>
+      <div class="mean-type-wrapper">
+        <span class="bullet-word-type">Meaning</span>
+        <div class="mean-list">
+          <div>To type on a computer keyboard.</div>
+          <span class="example">“Keyboarding is the part of this job I hate the most.”</span>
+        </div>
+      </div>
+      <div class="end-page seperator-horizontal"></div>
+      <div class="reference-wrapper">
+        <span class="source-link">Source</span>
+        <span class="reference-link">https://en.wiktionary.org/wiki/keyboard</span>
+        <svg
+          class="icon-link"
+          xmlns="http://www.w3.org/2000/svg"
+          width="12"
+          height="12"
+          viewBox="0 0 14 14"
+        >
+          <path
+            fill="none"
+            stroke="#838383"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="1.5"
+            d="M6.09 3.545H2.456A1.455 1.455 0 0 0 1 5v6.545A1.455 1.455 0 0 0 2.455 13H9a1.455 1.455 0 0 0 1.455-1.455V7.91m-5.091.727 7.272-7.272m0 0H9m3.636 0V5"
+          />
+        </svg>
       </div>
     </div>
-    <div class="end-page seperator-horizontal"></div>
-    <div class="reference-wrapper">
-      <span class="source-link">Source</span>
-      <span class="reference-link">https://en.wiktionary.org/wiki/keyboard</span>
-      <svg
-        class="icon-link"
-        xmlns="http://www.w3.org/2000/svg"
-        width="12"
-        height="12"
-        viewBox="0 0 14 14"
+    <div v-if="isNotFound" class="not-found-page">
+      <span class="notfound-emoji">😕</span>
+      <span class="notfound-summary">No Definitions Found</span>
+      <span class="notfound-description"
+        >Sorry pal, we couldn't find definitions for the word you were looking for. You can try the
+        search again at later time or head to the web instead.</span
       >
-        <path
-          fill="none"
-          stroke="#838383"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="1.5"
-          d="M6.09 3.545H2.456A1.455 1.455 0 0 0 1 5v6.545A1.455 1.455 0 0 0 2.455 13H9a1.455 1.455 0 0 0 1.455-1.455V7.91m-5.091.727 7.272-7.272m0 0H9m3.636 0V5"
-        />
-      </svg>
     </div>
   </div>
 </template>
 
 <style scoped lang="scss">
+.notfound-description {
+  display: inline-block;
+  font-size: variables.$font-size-body-m;
+  margin-top: 24px;
+  @include variables.respond-to(tablet) {
+    font-size: variables.$font-size-body-m;
+    margin-top: 24px;
+  }
+  @include variables.respond-to(mobile) {
+    font-size: variables.$font-size-body-s;
+    margin-top: 16px;
+  }
+}
+
+.notfound-summary {
+  font-weight: bold;
+  display: inline-block;
+  font-size: 20px;
+  margin-top: 44px;
+  @include variables.respond-to(tablet) {
+    font-size: 20px;
+    margin-top: 44px;
+  }
+  @include variables.respond-to(mobile) {
+    font-size: 16px;
+    margin-top: 32px;
+  }
+}
+
+.notfound-emoji {
+  display: inline-block;
+  margin-top: 132px;
+  font-size: 64px;
+  @include variables.respond-to(tablet) {
+    margin-top: 132px;
+    font-size: 64px;
+  }
+  @include variables.respond-to(mobile) {
+    margin-top: 64px;
+    font-size: 32px;
+  }
+}
+.not-found-page {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+}
 .icon-link {
   margin-left: 15px;
 }
