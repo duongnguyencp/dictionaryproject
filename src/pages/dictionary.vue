@@ -4,7 +4,7 @@ import selectFont from '@/components/select-font/select-font.vue'
 import toggleTheme from '@/components/radios/toggle-them.vue'
 import searchBtn from '@/components/search-boxs/search-btn.vue'
 import playBtn from '@/components/buttons/play-btn.vue'
-import { ref, watch } from 'vue'
+import { ref } from 'vue'
 import { search } from '@/api/search'
 import type { Result, DictionaryApiResponse } from '@/api/search'
 type SearchExpose = {
