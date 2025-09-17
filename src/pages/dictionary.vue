@@ -238,12 +238,16 @@ const search_impl = async (word: string) => {
   text-decoration: underline;
   text-decoration-thinkness: 1px;
 }
-
+.synonyms-wrapper span:nth-child(2) {
+  margin-left: 40px;
+}
+.synonyms-wrapper span:nth-child(n + 3) {
+  margin-left: 20px;
+}
 .synonyms-list {
   color: variables.$color-purple;
   font-size: variables.$font-size-heading-s;
   font-weight: bold;
-  margin-left: 40px;
   cursor: pointer;
   @include variables.respond-to(tablet) {
     font-size: variables.$font-size-heading-s;

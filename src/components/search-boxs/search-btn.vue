@@ -6,7 +6,22 @@
       @keyup.enter="handlerEnter"
       :class="{ error: isError }"
     />
-    <span class="icon-search" />
+    <svg
+      class="icon-search"
+      mlns="http://www.w3.org/2000/svg"
+      width="18"
+      height="18"
+      viewBox="0 0 18 18"
+    >
+      <path
+        fill="none"
+        stroke="#A445ED"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="1.5"
+        d="m12.663 12.663 3.887 3.887M1 7.664a6.665 6.665 0 1 0 13.33 0 6.665 6.665 0 0 0-13.33 0Z"
+      />
+    </svg>
   </div>
   <p v-if="isError" class="error-message">Whoops, can't be empty...</p>
 </template>
@@ -79,11 +94,8 @@ input::placeholder {
 .icon-search {
   position: absolute;
   right: 24.5px;
-  width: 15.5px;
   top: 50%;
-  aspect-ratio: 1/1;
   transform: translateY(-50%);
-  background-image: url('@/assets/images/icon-search.svg');
   background-size: contain;
   background-repeat: no-repeat;
   display: inline-block;
