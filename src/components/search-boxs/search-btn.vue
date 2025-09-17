@@ -12,15 +12,14 @@
 </template>
 <script setup lang="ts">
 const placeholder = 'Search for any word...'
-import { ref, defineExpose } from 'vue'
+import { ref } from 'vue'
+const emit = defineEmits(['update:search'])
 const inputValue = ref('')
 const isError = ref(false)
 const handlerEnter = () => {
   isError.value = inputValue.value.trim() === ''
+  emit('update:search', inputValue.value)
 }
-defineExpose({
-  inputValue,
-})
 </script>
 <style lang="scss" scoped>
 input {

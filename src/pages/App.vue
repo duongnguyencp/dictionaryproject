@@ -1,26 +1,32 @@
 <script setup lang="ts">
-import logoVue from './components/logo/logo.vue'
-import selectFont from './components/select-font/select-font.vue'
-import toggleTheme from './components/radios/toggle-them.vue'
-import searchBtn from './components/search-boxs/search-btn.vue'
-import playBtn from './components/buttons/play-btn.vue'
+import logoVue from '@/components/logo/logo.vue'
+import selectFont from '@/components/select-font/select-font.vue'
+import toggleTheme from '@/components/radios/toggle-them.vue'
+import searchBtn from '@/components/search-boxs/search-btn.vue'
+import playBtn from '@/components/buttons/play-btn.vue'
 import { ref, watch } from 'vue'
+import { search } from '@/api/search'
+import type { Result, DictionaryApiResponse } from '@/api/search'
 type SearchExpose = {
   inputValue: string
 }
-const isNotFound = ref(false)
+const isNotFound = ref(true)
+const dictionary = ref<DictionaryApiResponse | null>(null)
 const searchRef = ref<SearchExpose | null>(null)
-watch(
-  () => searchRef.value?.inputValue,
-
-  (newVal, oldVal) => {
-    if (newVal !== '') {
-      isNotFound.value = true
-    } else {
+const search_impl = async (word: string) => {
+  if (word) {
+    let result_search: Result<DictionaryApiResponse> = await search(word)
+    if ('data' in result_search) {
+      let data = result_search.data
+      dictionary.value = data
       isNotFound.value = false
+    } else {
+      isNotFound.value = true
     }
-  },
-)
+  } else {
+    isNotFound.value = true
+  }
+}
 </script>
 
 <template>
@@ -34,51 +40,63 @@ watch(
       </div>
     </div>
     <div class="search-wrapper">
-      <searchBtn ref="searchRef"></searchBtn>
+      <searchBtn @update:search="search_impl" ref="searchRef"></searchBtn>
     </div>
     <div class="content-search" v-if="isNotFound === false">
       <div class="word-result-wrapper">
-        <span class="word-result">keyboard</span>
-        <span class="word-sound">/ˈkiːbɔːd/</span>
+        <span class="word-result">{{ dictionary?.field.find((e) => 'word' in e)?.word }}</span>
+        <span class="word-sound">{{
+          dictionary?.field.find((e) => 'phonetic' in e)?.phonetic
+        }}</span>
         <playBtn class="play-btn" />
       </div>
-      <div class="word-type-wrapper">
-        <span class="type-word">noun</span>
-        <div class="seperator-horizontal"></div>
-      </div>
-      <div class="mean-type-wrapper">
-        <span class="bullet-word-type">Meaning</span>
-        <div class="mean-list">
-          <div>(etc.) A set of keys used to operate a typewriter, computer etc.</div>
-          <div>
-            A component of many instruments including the piano, organ, and harpsichord consisting
-            of usually black and white keys that cause different tones to be produced when struck.
-          </div>
-          <div>
-            A device with keys of a musical keyboard, used to control electronic sound-producing
-            devices which may be built into or separate from the keyboard device.
+      <template
+        v-for="(meaning, mean_idx) in dictionary?.field.find((e) => 'meanings' in e)?.meanings"
+        :key="mean_idx"
+      >
+        <div class="word-type-wrapper">
+          <span class="type-word">{{
+            meaning?.value?.field.find((e) => 'partOfSpeech' in e)?.partOfSpeech
+          }}</span>
+          <div class="seperator-horizontal"></div>
+        </div>
+        <div class="mean-type-wrapper">
+          <span class="bullet-word-type">Meaning</span>
+          <div class="mean-list">
+            <template
+              v-for="(ele_defi, defi_index) in meaning?.value?.field.find((e) => 'definitions' in e)
+                ?.definitions"
+              :key="defi_index"
+              ><div>{{ ele_defi?.value?.field.find((e) => 'definition' in e)?.definition }}</div>
+              <span class="example">{{
+                ele_defi?.value?.field.find((e) => 'example' in e)?.example
+              }}</span>
+            </template>
           </div>
         </div>
-      </div>
-      <div class="synonyms-wrapper">
-        <span class="bullet-word-type">Synonyms</span>
-        <span class="synonyms-list">electronic keyboard</span>
-      </div>
-      <div class="word-type-wrapper">
-        <span class="type-word">verb</span>
-        <div class="seperator-horizontal"></div>
-      </div>
-      <div class="mean-type-wrapper">
-        <span class="bullet-word-type">Meaning</span>
-        <div class="mean-list">
-          <div>To type on a computer keyboard.</div>
-          <span class="example">“Keyboarding is the part of this job I hate the most.”</span>
+        <div
+          v-if="meaning?.value?.field.find((e) => 'synonyms' in e)?.synonyms?.length"
+          class="synonyms-wrapper"
+        >
+          <span class="bullet-word-type">Synonyms</span>
+          <span class="synonyms-list"
+            ><template
+              v-for="(ele_syn, ele_idx) in meaning?.value?.field.find((e) => 'synonyms' in e)
+                ?.synonyms"
+            >
+              {{ ele_syn?.value + ' ' }}</template
+            ></span
+          >
         </div>
-      </div>
+      </template>
       <div class="end-page seperator-horizontal"></div>
       <div class="reference-wrapper">
         <div class="source-link">Source</div>
-        <span class="reference-link">https://en.wiktionary.org/wiki/keyboard</span>
+        <a
+          class="reference-link"
+          :href="dictionary?.field.find((e) => 'source_url' in e)?.source_url"
+          >{{ dictionary?.field.find((e) => 'source_url' in e)?.source_url }}</a
+        >
         <svg
           class="icon-link"
           xmlns="http://www.w3.org/2000/svg"
@@ -161,6 +179,7 @@ watch(
 }
 .reference-link {
   margin-left: 21px;
+  color: inherit;
   text-decoration: underline;
   @include variables.respond-to(tablet) {
     margin-left: 21px;
