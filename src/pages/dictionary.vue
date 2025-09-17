@@ -27,6 +27,15 @@ const search_impl = async (word: string) => {
     isNotFound.value = true
   }
 }
+const audio = ref<HTMLAudioElement>(new Audio())
+const play_audio = (event: Event) => {
+  audio.value.src =
+    dictionary?.value?.field
+      .find((e) => 'audio_save' in e)
+      ?.audio_save?.replace(/^"(.*)"$/, '$1') ?? ''
+  audio.value.load()
+  audio.value.play()
+}
 </script>
 
 <template>
@@ -48,7 +57,7 @@ const search_impl = async (word: string) => {
         <span class="word-sound">{{
           dictionary?.field.find((e) => 'phonetic' in e)?.phonetic
         }}</span>
-        <playBtn class="play-btn" />
+        <playBtn @click="play_audio" class="play-btn" />
       </div>
       <template
         v-for="(meaning, mean_idx) in dictionary?.field.find((e) => 'meanings' in e)?.meanings"
@@ -82,6 +91,7 @@ const search_impl = async (word: string) => {
           <template
             v-for="(ele_syn, ele_idx) in meaning?.value?.field.find((e) => 'synonyms' in e)
               ?.synonyms"
+            :key="ele_idx"
             ><span class="synonyms-list"> {{ ele_syn?.value + ' ' }}</span></template
           >
         </div>
