@@ -79,13 +79,10 @@ const search_impl = async (word: string) => {
           class="synonyms-wrapper"
         >
           <span class="bullet-word-type">Synonyms</span>
-          <span class="synonyms-list"
-            ><template
-              v-for="(ele_syn, ele_idx) in meaning?.value?.field.find((e) => 'synonyms' in e)
-                ?.synonyms"
-            >
-              {{ ele_syn?.value + ' ' }}</template
-            ></span
+          <template
+            v-for="(ele_syn, ele_idx) in meaning?.value?.field.find((e) => 'synonyms' in e)
+              ?.synonyms"
+            ><span class="synonyms-list"> {{ ele_syn?.value + ' ' }}</span></template
           >
         </div>
       </template>
@@ -237,16 +234,17 @@ const search_impl = async (word: string) => {
   margin-top: 41px;
 }
 
+.synonyms-wrapper .synonyms-list:nth-of-type(n):hover {
+  text-decoration: underline;
+  text-decoration-thinkness: 1px;
+}
+
 .synonyms-list {
   color: variables.$color-purple;
   font-size: variables.$font-size-heading-s;
   font-weight: bold;
   margin-left: 40px;
   cursor: pointer;
-  &:hover {
-    text-decoration: underline;
-    text-decoration-thinkness: 1px;
-  }
   @include variables.respond-to(tablet) {
     font-size: variables.$font-size-heading-s;
   }
